@@ -1,28 +1,25 @@
-const axios = require('axios');
-
 module.exports = async (req, res) => {
     const { token } = req.query;
 
-    // ১. টোকেন সিকিউরিটি চেক
+    // ১. টোকেন চেক (সরাসরি কোডের ভেতর)
     if (!token) return res.status(403).send("Error: Token missing!");
 
-    try {
-        // ফাইলটি api ফোল্ডারের ভেতরে থাকায় আমরা লিংকটা পরিবর্তন করে দিলাম
-        const githubDbUrl = "https://raw.githubusercontent.com/nahid28888/nahidiptv/main/api/users.json"; 
-        const dbResponse = await axios.get(githubDbUrl);
-        const users = dbResponse.data;
+    // তোমার এক্টিভ টোকেন লিস্ট
+    const allowedTokens = ["nahid3link", "rahat3link"];
 
-        if (!users[token]) return res.status(403).send("Invalid Token!");
-        if (users[token].status === 'blocked') return res.status(403).send("Account Blocked!");
-
-        // প্লেলিস্টের লিংকও api ফোল্ডারের ভেতরেরটা সেট করে দিলাম
-        const playlistUrl = "https://raw.githubusercontent.com/nahid28888/nahidiptv/main/api/playlist.m3u";
-        const playlistResponse = await axios.get(playlistUrl);
-        
-        res.setHeader('Content-Type', 'audio/x-mpegurl');
-        return res.status(200).send(playlistResponse.data);
-
-    } catch (error) {
-        return res.status(500).send("Server Error: File path issue fixed!");
+    if (!allowedTokens.includes(token)) {
+        return res.status(403).send("Invalid Token or Account Blocked!");
     }
+
+    // ২. তোমার প্লেলিস্ট ডেটা (সরাসরি কোডের ভেতর বসিয়ে দিলাম)
+    // এখানে তোমার m3u ফাইলের সব লিংকগুলো নিচের মতো করে বসিয়ে দাও
+    const playlistData = `#EXTM3U
+#EXTINF:-1 tvg-logo="https://tvassets.roarzone.net/images/ananda-tv.png" group-title="bangla",ANANDA TV
+https://edge2.roarzone.net:8447/roarzone/edge5/ananda-tv/index.m3u8?token=2350fde503b77fe19ec883982f262e557eb2d32c-7eabcc5d78fbb419fc6887eeffd338b2-1779338613-1779327813
+#EXTINF:-1 tvg-logo="https://tvassets.roarzone.net/images/asian-tv.png" group-title="bangla",ASIAN TV
+https://edge2.roarzone.net:8447/roarzone/edge5/asian-tv/index.m3u8?token=c43bae1126a23cab28b8cd3ac97a2b47f34dbdd5-d37ccae0ded19c878cb1f3bb7abb9a50-1779338615-1779327815
+#EXTINF:-1 tvg-logo="https://tvassets.roarzone.net/images/atn-bangla.png" group-title="bangla",ATN BANGLA
+    // ৩. রেসপন্স পাঠানো
+    res.setHeader('Content-Type', 'audio/x-mpegurl');
+    return res.status(200).send(playlistData);
 };
