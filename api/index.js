@@ -6,8 +6,8 @@ module.exports = async (req, res) => {
     if (!token) return res.status(403).send("Error: Token missing!");
 
     try {
-        // --- তোমার গিটহাবের users.json ফাইলের আসল Raw লিংকটি এখানে বসাবে ---
-        const githubDbUrl = "https://raw.githubusercontent.com/nahid28888/users.js/main/users.json";
+        // Tomar nahidiptv repository-r users.json er raw link:
+        const githubDbUrl = "https://raw.githubusercontent.com/nahid28888/nahidiptv/main/users.json"; 
         const dbResponse = await axios.get(githubDbUrl);
         const users = dbResponse.data;
 
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         liveConnections[token] += 1;
         setTimeout(() => { if (liveConnections[token] > 0) liveConnections[token] -= 1; }, 30000); 
 
-        // --- তোমার সেই মেইন BDIX প্লেলিস্টের Raw লিংকটি এখানে থাকবে ---
+        // Main BDIX Playlist link:
         const playlistUrl = "https://raw.githubusercontent.com/abusaeeidx/Mrgify-BDIX-IPTV/main/playlist.m3u";
         const playlistResponse = await axios.get(playlistUrl);
         
