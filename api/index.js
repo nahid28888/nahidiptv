@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
     try {
         // --- তোমার গিটহাবের users.json ফাইলের আসল Raw লিংকটি এখানে বসাবে ---
-        const githubDbUrl = "https://raw.githubusercontent.com/তোমার-গিটহাব-ইউজারনেম/3link-iptv/main/users.json"; 
+        const githubDbUrl = "https://raw.githubusercontent.com/nahid28888/users.js/main/users.json";
         const dbResponse = await axios.get(githubDbUrl);
         const users = dbResponse.data;
 
