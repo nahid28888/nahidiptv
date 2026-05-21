@@ -1,8 +1,18 @@
 module.exports = async (req, res) => {
-    const { token } = req.query;
+    // ১. ইউআরএল (URL) থেকে টোকেন বের করার সবচেয়ে সেফ উপায়
+    let token = req.query ? req.query.token : null;
+    
+    if (!token && req.url) {
+        try {
+            const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+            token = urlObj.searchParams.get("token");
+        } catch (e) {}
+    }
 
-    // ১. টোকেন চেক (সরাসরি কোডের ভেতর)
-    if (!token) return res.status(403).send("Error: Token missing!");
+    // টোকেনটি খালি বা স্পেস থাকলে ট্রিম করা
+    if (token) token = token.trim();
+
+    if (!token) return res.status(403).send("Error: Token missing! Append ?token=YOUR_TOKEN to your URL.");
 
     // তোমার এক্টিভ টোকেন লিস্ট
     const allowedTokens = ["nahid3link", "rahat3link", "yousuf3link"];
@@ -11,7 +21,7 @@ module.exports = async (req, res) => {
         return res.status(403).send("Invalid Token or Account Blocked!");
     }
 
-    // ২. তোমার প্লেলিস্ট ডেটা (তোমার দেওয়া nahid.txt ফাইলের সম্পূর্ণ 229 টি চ্যানেলই এখানে আছে)
+    // ২. তোমার প্লেলিস্ট ডেটা (সম্পূর্ণ ২২ญটি চ্যানেল)
     const playlistData = `#EXTM3U
 #EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyniKyW9pUz1OKx5bgzLASwGVSuP0e7hX9FxVMTJMHxhu8X0tpucgSplBZgM8pCYrJJH0P2_dTC1-wzp4mMUU4sKnOzghGPCwWdbYOOa4jTyhpr7ydNj-UK-bc56IMsk2H3WZJ-SzSZIk0dTpyABCFR2_zjC2_c86W1pv7odFBT_Y-hyJs62g-3zCJkPGd/s1024/1000398131.png" group-title="Welcome to PlayZ TV | New App",Welcome to PlayZ TV
 https://playztv.pages.dev/promo/master.m3u8
