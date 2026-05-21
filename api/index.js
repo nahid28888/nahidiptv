@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     if (!token) return res.status(403).send("Error: Token missing!");
 
     // তোমার এক্টিভ টোকেন লিস্ট
-    const allowedTokens = ["nahid3link", "rahat3link"];
+    const allowedTokens = ["nahid3link", "rahat3link", "yousuf3link"];
 
     if (!allowedTokens.includes(token)) {
         return res.status(403).send("Invalid Token or Account Blocked!");
