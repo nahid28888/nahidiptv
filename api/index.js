@@ -1,4 +1,3 @@
-
 module.exports = async (req, res) => {
     let token = req.query ? req.query.token : null;
     
@@ -472,7 +471,7 @@ https://tvsen6.aynaott.com/eman/index.m3u8?e=1779283935&u=78be6644-0a65-48ec-81a
 #EXTINF:-1 tvg-logo="https://s3.aynaott.com/storage/813fca9bc7df9a4810efe2eb87c57039" group-title="Religious",MADANI TV
 https://tvsen7.aynaott.com/MadaniTV/index.m3u8?e=1779283937&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=8e3699711dd88227b533acc570b06a7b
 
-
-    res.setHeader('Content-Type', 'audio/x-mpegurl');
+    res.setHeader("Content-Type", "application/octet-stream");
+    res.setHeader("Content-Disposition", "attachment; filename=playlist.m3u8");
     return res.status(200).send(playlistData);
 };
