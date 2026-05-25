@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
 
     if (!token) return res.status(403).send("Error: Token missing!");
 
-    const allowedTokens = ["nahid3link", "rahat3link", "yousuf3link", "anik3link", "milon3link"];
+    const allowedTokens = ["nahid3link", "shoriful", "yousuf3link", "anik3link", "milon3link", "emran3link", "apon3link", "roni3link"];
 
     if (!allowedTokens.includes(token)) {
         return res.status(403).send("Invalid Token or Account Blocked!");
