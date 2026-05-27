@@ -102,7 +102,7 @@ https://padmaonline.duckdns.org:8088/SonyMaxHD/tracks-v1a1/mono.m3u8
 https://edge2.roarzone.net:8447/roarzone/edge3/sonymax_2/index.m3u8?token=ce5fe2ac7bdbb2c7d000c55a01516a5a8b41461e-5e73bd5df594f39856f60d730ce7edcc-1779290239-1779279439
 #EXTINF:-1 tvg-logo="https://tvassets.roarzone.net/images/sony-atth.png" group-title="hindi",SONY ATTH
 https://edge2.roarzone.net:8447/roarzone/edge5/sony-atth/index.m3u8?token=4bbfc7efca159f0b6283b56394373ea3846736ec-88bc49470ccbf4ee34893287183c64c2-1779290239-1779279439
-#EXTINF:-1 tvg-logo="https://i.postimg.cc/kMQkvgJ6/images-(1).jpg" group-title="NAHID",FIFA
+#EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/thumbnails/014/470/974/small/fifa-official-logo-symbol-design-abstract-illustration-free-vector.jpg" group-title="NAHID",FIFA
 https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/20-by-xfireflix.png" group-title="Sports",PTV Sports
 https://tvsen5.aynaott.com/PtvSports/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=db1789e36c278bf538489fac263e0ffb
