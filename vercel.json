@@ -1,11 +1,16 @@
 {
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Content-Type", "value": "application/x-mpegurl" }
-      ]
+      "src": "/playlist.m3u",
+      "dest": "/playlist.m3u",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/x-mpegurl"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
